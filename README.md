@@ -1,4 +1,3 @@
->>>>>>
 Studentnaam: Joeri Smits
 
 Studentnummer: 524292
