@@ -41,7 +41,7 @@ Connection: close
 Content-Type: text/css
 ```
 
-(Kan je globale overeenkomsten vinden tussen een request en een response?) (Teken een diagram en licht de onderdelen toe)
+Zowel de _request_ als de _response_ geven beide aan welke protocol wordt gebruikt. In dit geval is dat `HTTP/1.1`. Verder valt op dat de request net als de response per regel een key heeft met daarachter de waarde van de desbestreffende key. Deze keys zijn voor de request en response anders. 
 
 ## TCP/IP
 
