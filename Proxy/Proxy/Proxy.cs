@@ -6,6 +6,9 @@ namespace Proxy
 {
     public partial class Proxy : Form
     {
+        public static int Port = 9000;
+        public static bool CheckedAuth;
+
         /// <summary>
         /// Constructor proxy
         /// </summary>
@@ -14,6 +17,8 @@ namespace Proxy
             InitializeComponent();
         }
 
+        public CheckBox UserAuthCheck { get; set; }
+
         /// <summary>
         /// Fires when a user presses the start proxy button
         /// </summary>
@@ -21,7 +26,7 @@ namespace Proxy
         /// <param name="e"></param>
         public void _BtnStart_Click(object sender, EventArgs e)
         {
-            var proxy = new Listener(9000, _addTextToLstChat);
+            var proxy = new Listener(Port, _addTextToLst);
             proxy.StartListener();
 
             var t = new Thread(delegate()
@@ -39,14 +44,48 @@ namespace Proxy
         /// Adds any input string to the lstChat form element. It will put every message on a seperate new line
         /// </summary>
         /// <param name="input">The input that will be printed</param>
-        private void _addTextToLstChat(string input)
+        private void _addTextToLst(string input)
         {
             Invoke(new Action(() =>
             {
-                logTxt.AppendText(input);
-                logTxt.AppendText(Environment.NewLine);
+                logTxt.Items.Add(input);
+
+                // Scroll down to the last item
+                var visibleItems = logTxt.ClientSize.Height / logTxt.ItemHeight;
+                logTxt.TopIndex = Math.Max(logTxt.Items.Count - visibleItems + 1, 0);
             }));
         }
 
+        private void clrBtn_Click(object sender, EventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                logTxt.Items.Clear();
+            }));
+        }
+
+        private void logTxt_DoubleClick(object sender, MouseEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                var index = logTxt.IndexFromPoint(e.Location);
+                var content = logTxt.Items[index].ToString();
+                var form = new PopUp(content);
+                form.Show();
+            }));
+        }
+
+        private void textBox1_Blur(object sender, EventArgs e)
+        {
+            Port = Convert.ToInt32(textBox1.Text);
+        }
+
+        private void authChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            if (authChecked != null)
+            {
+                CheckedAuth = authChecked.Checked;
+            }
+        }
     }
 }
