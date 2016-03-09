@@ -48,14 +48,15 @@ Zowel de _request_ als de _response_ geven beide aan welke protocol wordt gebrui
 ### Beschrijving van concept in eigen woorden
 TCP/IP is een verzamelnaam van de reeks netwerkprotocollen die voor een grote meerderheid van de netwerkcommunicatie tussen computers instaan. Het grootste en bekendste TCP/IP-netwerk is het internet.  
 
-De TCP/IP-protocolstack wordt onderverdeeld in vijf lagen, met elk een eigen functionaliteit.
-| |Laag|Protocollen/systemen|
-|:---:|:---:|:---:|
-|7|Applicatie|HTTP, FTP, DNS, RTP|
-|4|Transport|TCP, UDP, SCTP|
-|3|Netwerk|TCP/IP gebruikt hiervoor het Internet Protocol (IP)|
-|2|Data Link|Ethernet, Token Ring|
-|1|Fysiek|Fysieke media, en lijncodering, T1, E1|
+De TCP/IP-protocolstack wordt onderverdeeld in vijf lagen, met elk een eigen functionaliteit.  
+
+| # | Laag | Protocollen/systemen |
+| :---: | :---: | :---: |
+| 7 | Applicatie | HTTP, FTP, DNS, RTP |
+| 4 | Transport | TCP, UDP, SCTP |
+| 3 | Netwerk | TCP/IP gebruikt hiervoor het Internet Protocol (IP) |
+| 2 | Data Link | Ethernet, Token Ring |
+| 1 | Fysiek |Fysieke media, en lijncodering, T1, E1 |
 
 
 ### Code voorbeeld van je eigen code
