@@ -8,7 +8,10 @@ Studentnummer: 524292
 Deze applicatie is een HTTP Proxy gebasseerd op het TCP protocol. De proxy heeft als functionaliteit dat afbeelding worden gefilterd en worden vervangen door placeholders. Daarnaast is er caching in de proxy ingebouwd. De proxy draait standaard op poort 9000 van 127.0.0.1 . Door de autheticatie vink aan te zitten in de GUI van de proxy worden de user-agent headers verwijderd.  
 ![alt text](https://github.com/JoeriSmits/NotS-assignment-3/blob/master/proxy_basic.png "Proxy basic")
 
-De *client* stuurt zijn HTTP request naar de proxy, inplaats van naar het internet en dan naar de webbrowser. De proxy kan hierdoor de request aanpassen om bijvoorbeeld de `User-Agent` weg te laten. Daarna stuurt de proxy het request via het internet door naar de webserver die dan een reponse afgeeft. Deze response wordt opgevangen bij de proxy die deze response dan naar de client stuurt.
+De *client* stuurt zijn HTTP request naar de proxy, inplaats van naar het internet en dan naar de webbrowser. De proxy kan hierdoor de request aanpassen om bijvoorbeeld de `User-Agent` weg te laten. Daarna stuurt de proxy het request via het internet door naar de webserver die dan een reponse afgeeft. Deze response wordt opgevangen bij de proxy die deze response dan naar de client stuurt.  
+
+Klasse diagram:
+![alt text](https://github.com/JoeriSmits/NotS-assignment-3/blob/master/proxy_class_diagram.png "Proxy basic")
 
 ## Zorg voor een voorbeeld van een http‐request en van een http‐response.
 
