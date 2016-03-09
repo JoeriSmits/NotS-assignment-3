@@ -98,11 +98,11 @@ Ik zou graag wat meer kennis willen hebben wat meer specifiek is aan de opdracht
 
 #Test cases
 
-###Case naam
-
-###Case handeling
-
-###Case verwachtgedrag
+### Het bezoeken van de website server3.tezzt.nl
+#### Case Handeling
+Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de web browser. Bezoek de website `server3.tezzt.nl` in de webbrowser. 
+####Case verwachtgedrag
+De proxy zou voor iedere HTTP Request die in de log staat een HTTP response moeten teruggeven.
 
 #Kritische reflectie op eigen beroepsproduct
 
