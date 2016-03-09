@@ -7,7 +7,7 @@ Studentnummer: 524292
 #Algemene beschrijving applicatie
 Proxy runs on port 9000
 
-## Ontwerpen bouwde *architectuur* van de applicatie die HTTP‐requests van een willekeurige PC op vangt en door stuurt naar één webserver.(Teken een diagram en licht de onderdelen toe)
+## Ontwerpen bouw de *architectuur* van de applicatie die HTTP‐requests van een willekeurige PC op vangt en door stuurt naar één webserver. (Teken een diagram en licht de onderdelen toe)
 
 ## Zorg voor een voorbeeld van een http‐request en van een http‐response.
 
