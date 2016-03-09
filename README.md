@@ -58,12 +58,21 @@ De TCP/IP-protocolstack wordt onderverdeeld in vijf lagen, met elk een eigen fun
 | 2 | Data Link | Ethernet, Token Ring |
 | 1 | Fysiek |Fysieke media, en lijncodering, T1, E1 |
 
-
 ### Code voorbeeld van je eigen code
-
+```cs
+this.listener = new TcpListener(IPAddress.Any, this._listenPort);
+```
 ### Alternatieven & adviezen
+Er zijn erg veel alternatieve gemaakt op het TCP/IP principe. Ze zijn alleen allemaal verslagen door TCP/IP, daarom is TCP/IP ook veel populairder dan zijn alternatieve.
+
+* Apple heeft gebruik gemaakt van AppleTalk gebasseerd op AFP en DDP. Ze zijn alleen na een tijd overgestapt naar transport over IP.
+* IBM heeft een primitief protocol onderhouden genaamd _System Network Architecture (SNA)_. Dit liep over Synchrone Data Link Control (SBLC) voor communicatie tussen hun main services.
+* Chaosnet was een _packet based protocol_ gemaakt door MIT. Dit werd gebruikt voor verbinding tussen LISP machines. Het is ontwikkeld in dezelfde tijd als PUP en IP.
 
 ### Authentieke en gezaghebbende bronnen
+Remaker, P. (2015, July 13). Is there an alternative to the TCP/IP model that does not utilize the Internet Protocol (IPv4/6)? Retrieved March 09, 2016, from https://www.quora.com/Is-there-an-alternative-to-the-TCP-IP-model-that-does-not-utilize-the-Internet-Protocol-IPv4-6
+Rouse, M. (2008, October). What is TCP/IP (Transmission Control Protocol/Internet Protocol)? - Definition from WhatIs.com. Retrieved March 09, 2016, from http://searchnetworking.techtarget.com/definition/TCP-IP
+
 
 ## Bestudeer de RFC van HTTP 1.1.
 
