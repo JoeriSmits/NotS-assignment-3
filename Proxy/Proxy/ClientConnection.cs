@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Proxy
 {
@@ -139,7 +140,6 @@ namespace Proxy
                 }
                 else
                 {
-                    var assembly = System.Reflection.Assembly.GetExecutingAssembly();
                     var img = Properties.Resources.placeholder;
 
                     byte[] byteImage;
@@ -149,14 +149,20 @@ namespace Proxy
 
                         response = "HTTP/1.1 200 OK" + eol + "Server: Joeri Proxy" + eol + "Accept-Ranges: bytes" +
                                    eol + "Content-Length: " + byteImage.Length + eol + "Connection: close" + eol + 
-                                   "Content-Type: image/png";
+                                   "Content-Type: image/png" + eol;
 
                         var responseHeader = Encoding.ASCII.GetBytes(response);
                         var mergedResponse = new byte[responseHeader.Length + byteImage.Length];
                         responseHeader.CopyTo(mergedResponse, 0);
                         byteImage.CopyTo(mergedResponse, responseHeader.Length);
 
-                        this._clientSocket.Send(responseBuffer);
+                        var i = 0;
+                        while (i < mergedResponse.Length)
+                        {
+                            responseBuffer[0] = mergedResponse[i];
+                            this._clientSocket.Send(responseBuffer);
+                            i++;
+                        }
                     }
                     else
                     {
