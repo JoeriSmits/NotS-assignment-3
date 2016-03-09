@@ -5,7 +5,7 @@ Studentnummer: 524292
 ‐‐‐
 
 #Algemene beschrijving applicatie
-Proxy runs on port 9000
+Deze applicatie is een HTTP Proxy gebasseerd op het TCP protocol. De proxy heeft als functionaliteit dat afbeelding worden gefilterd en worden vervangen door placeholders. Daarnaast is er caching in de proxy ingebouwd. De proxy draait standaard op poort 9000 van 127.0.0.1 . Door de autheticatie vink aan te zitten in de GUI van de proxy worden de user-agent headers verwijderd.
 
 ## Ontwerpen bouw de *architectuur* van de applicatie die HTTP‐requests van een willekeurige PC op vangt en door stuurt naar één webserver. (Teken een diagram en licht de onderdelen toe)
 
