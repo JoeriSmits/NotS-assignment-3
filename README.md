@@ -12,6 +12,32 @@ De *client* stuurt zijn HTTP request naar de proxy, inplaats van naar het intern
 
 ## Zorg voor een voorbeeld van een http‐request en van een http‐response.
 
+Request:
+```
+GET /css/main.css HTTP/1.1
+Host: joerismits.nl
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/css,*/*;q=0.1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36
+Referer: http://joerismits.nl/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: nl-NL,nl;q=0.8,en-US;q=0.6,en;q=0.4
+```
+
+Response:
+```
+HTTP/1.1 200 OK
+Date: Wed, 09 Mar 2016 21:59:22 GMT
+Server: Apache
+Last-Modified: Thu, 10 Sep 2015 06:12:35 GMT
+Accept-Ranges: bytes
+Content-Length: 720
+Connection: close
+Content-Type: text/css
+```
+
 (Kan je globale overeenkomsten vinden tussen een request en een response?) (Teken een diagram en licht de onderdelen toe)
 
 ## TCP/IP
