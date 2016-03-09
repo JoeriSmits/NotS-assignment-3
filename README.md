@@ -7,58 +7,52 @@ Studentnummer: 524292
 #Algemene beschrijving applicatie
 Proxy runs on port 9000
 
-## Ontwerpenbouwde*architectuur*vandeapplicatiedieHTTP‐requestsvaneenwillekeurigePC
+## Ontwerpen bouwde *architectuur* van de applicatie die HTTP‐requests van een willekeurige PC op vangt en door stuurt naar één webserver.(Teken een diagram en licht de onderdelen toe)
 
-opvangtendoorstuurtnaaréénwebserver.(Tekeneendiagramenlichtdeonderdelentoe)
+## Zorg voor een voorbeeld van een http‐request en van een http‐response.
 
-## Zorgvooreenvoorbeeldvaneenhttp‐requestenvaneenhttp‐response.
-
-(Kanjeglobaleovereenkomstenvindentusseneenrequesteneenresponse?) (Tekeneendiagramenlicht
-
-deonderdelentoe)
+(Kan je globale overeenkomsten vinden tussen een request en een response?) (Teken een diagram en licht de onderdelen toe)
 
 ## TCP/IP
 
-### Beschrijvingvanconceptineigenwoorden
+### Beschrijving van concept in eigen woorden
 
-### Codevoorbeeldvanjeeigencode
+### Code voorbeeld van je eigen code
 
-### Alternatieven&adviezen
+### Alternatieven & adviezen
 
-### Authentiekeengezaghebbendebronnen
+### Authentieke en gezaghebbende bronnen
 
-## BestudeerdeRFCvanHTTP1.1.
+## Bestudeer de RFC van HTTP 1.1.
 
-### HoezietdeglobaleopbouwvaneenHTTPberichteruit?(Tekeneendiagramenlichtdeonderdelen
+### Hoe ziet de globale opbouw van een HTTP bericht eruit? (Teken een diagram en licht de onderdelen toe)
 
-toe)
+### Uit welke componenten bestaan een HTTP bericht. (Teken een diagram en licht de onderdelen toe)
 
-### UitwelkecomponentenbestaaneenHTTPbericht. (Tekeneendiagramenlichtdeonderdelentoe)
+### Hoe wordt de content in een bericht verpakt? (Teken een diagram en licht de onderdelen toe)
 
-### Hoewordtdecontentineenberichtverpakt?(Tekeneendiagramenlichtdeonderdelentoe)
+### Streaming content
 
-### Streamingcontent
+## Kritische reflectie op eigen werk (optioneel,maar wel voor een 10)
 
-## Kritischereflectieopeigenwerk(optioneel,maarwelvooreen10)
+### Wat kan er beter? Geef aan waarom?
 
-### Watkanerbeter?Geefaanwaarom?
+### Wat zou je een volgende keer anders doen?
 
-### Watzoujeeenvolgendekeerandersdoen?
+### Hoe zou de opdracht anders moeten zijn om er meer van te leren?
 
-### Hoezoudeopdrachtandersmoetenzijnomermeervanteleren?
+#Test cases
 
-#Testcases
+###Case naam
 
-###Casenaam
+###Case handeling
 
-###Casehandeling
+###Case verwachtgedrag
 
-###Caseverwachtgedrag
+#Kritische reflectie op eigen beroepsproduct
 
-#Kritischereflectieopeigenberoepsproduct
+###Definieer kwaliteit in je architectuur, design, implementatie.
 
-###Definieerkwaliteitinjearchitectuur,design,implementatie.
+###Geef voorbeelden.
 
-###Geefvoorbeelden.
-
-###Watkanerbeter,waarom?
+###Wat kan er beter, waarom?
