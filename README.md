@@ -87,10 +87,14 @@ Rouse, M. (2008, October). What is TCP/IP (Transmission Control Protocol/Interne
 ## Kritische reflectie op eigen werk (optioneel,maar wel voor een 10)
 
 ### Wat kan er beter? Geef aan waarom?
+Ik ben van mening dat de globale structuur van de applicatie beter kan. In de eerste opdracht (De Chat Applicatie) had ik de code, op een gedetailleerd niveau, onderverdeeld in verschillende klassen. Ik denk dat ik dat bij deze opdracht nog beter had kunnen doen, aangezien er nu redelijk veel code in één klasse staat. 
+Daarnaast wilde ik ook wat meer onderzoek doen naar de _best practice_ om een proxy te maken. Je merkte dat er in de klas verschillende technieken werden gebruikt, maar het is mij nu niet duidelijk wat de voor en nadelen hiervan zijn en welke techniek de _best practice_ is.
 
 ### Wat zou je een volgende keer anders doen?
+Ik wil de volgende keer eerder beginnen aan de opdracht. Het liefst, wil ik gelijk na de vorige opdracht beginnen met de volgende aangezien je die tijd nodig hebt. Ik ben denk ik net twee dagen te laat begonnen met de opdracht, waardoor ik nu met een klein tijdsprobleem zit. Hierdoor krijg ik de code niet zoals ik deze het liefst wil hebben, en moet ik de functionaliteiten meer prioriteit geven dan de code netheid.
 
 ### Hoe zou de opdracht anders moeten zijn om er meer van te leren?
+Ik zou graag wat meer kennis willen hebben wat meer specifiek is aan de opdracht. Ik heb nu erg veel op internet moeten zoeken naar voorbeelden hoe mensen een proxy hebben gemaakt in C#. Hier kwamen erg weinig voorbeelden uit. Wat ik ook graag terug zou willen zien is de best practices te behandelen in de les gerelateerd aan de opdracht, en dan ook met voorbeeld code. Dit maakt het vaak stukken duidelijker hoe ik kan beginnen. Ik ben met deze opdracht namelijk best veel tijd kwijt geweest met te bedenken hoe ik moet gaan beginnen.
 
 #Test cases
 
