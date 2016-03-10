@@ -121,6 +121,12 @@ Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de web
 #### Case verwacht gedrag
 De afbeeldingen die op de pagina staan moeten zijn vervangen door een placeholder afbeelding die ik resources staat van het project.
 
+### Caching
+#### Case Handeling
+Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de webbrowser. Zet een tijd in seconden in de cache time out textbox. Bezoek de website `server3.tezzt.nl`. Wacht totdat de website klaar is met laden. Herlaad de website door op CMD + R (Mac) of F5 (Windows) te drukken.
+#### Case verwacht gedrag
+De responses moeten worden gecached door de proxy en zullen dus veel sneller af worden gegeven. Er staat ook CACHED voor in de log.
+
 #Kritische reflectie op eigen beroepsproduct
 
 ###Definieer kwaliteit in je architectuur, design, implementatie.
