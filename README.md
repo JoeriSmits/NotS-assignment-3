@@ -77,6 +77,7 @@ Rouse, M. (2008, October). What is TCP/IP (Transmission Control Protocol/Interne
 ## Bestudeer de RFC van HTTP 1.1.
 
 ### Hoe ziet de globale opbouw van een HTTP bericht eruit? (Teken een diagram en licht de onderdelen toe)
+![alt text](https://github.com/JoeriSmits/NotS-assignment-3/blob/master/proxy_HTTP.png "Proxy HTTP")
 
 ### Uit welke componenten bestaan een HTTP bericht. (Teken een diagram en licht de onderdelen toe)
 
