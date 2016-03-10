@@ -9,7 +9,7 @@ namespace Proxy
         public static int Port = 9000;
         public static int BufferSize = 1;
         public static bool CheckedAuth;
-
+       
         /// <summary>
         /// Constructor proxy
         /// </summary>

@@ -56,7 +56,7 @@ namespace Proxy
             // Check if there are no errors
             try
             {
-                //State 0: Handle Request from Client
+                //Handle Request from Client
                 while (recvRequest)
                 {
                     // Safe the input of _clientSocket in requestBuffer
@@ -85,23 +85,27 @@ namespace Proxy
                 var requestFile = requestLines[0].Replace("http://", "").Replace(remoteHost, "");
                 requestLines[0] = requestFile;
 
+                // Read the request
                 requestPayload = "";
                 var imageRequest = false;
                 var imageExtension = "";
                 foreach (var line in requestLines)
                 {
+                    // Initialize the addLines boolean. 
+                    // If we have a checked checkbox and the line contains it will set it to false else it will set to true.
                     var addLines = !(Proxy.CheckedAuth && line.Contains("User-Agent"));
-
+                    // If the line contains 'Accept-Encoding' we will remove the line from the request
                     if (line.Contains("Accept-Encoding"))
                     {
                         addLines = false;
                     }
-
+                    // If the line contains Accept and image we will safe the image extension and say that it is a image request.
                     if (line.Contains("Accept") && line.Contains("image"))
                     {
                         imageRequest = true;
                         imageExtension = "png";
 
+                        // Check what image extension the image is that is been requested
                         if (line.Contains("jpg"))
                         {
                             imageExtension = "jpg";
@@ -111,7 +115,7 @@ namespace Proxy
                             imageExtension = "gif";
                         }
                     }
-
+                    // If the addLines boolean has not been set to false we will add the lines to the request
                     if (addLines)
                     {
                         requestPayload += line;
@@ -122,35 +126,77 @@ namespace Proxy
                 // Print the request to the log boxd
                 _printTextDelegate("> " + requestPayload);
 
-
+                // Is the request not an image request?
                 string response;
                 if (!imageRequest)
                 {
-                    // Connect to a remoteHost
-                    var destServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    destServerSocket.Connect(remoteHost, 80);
-
-                    // Sending New Request Information to Destination Server and Relay Response to Client
-                    destServerSocket.Send(Encoding.ASCII.GetBytes(requestPayload));
-
-                    var receivedBytes = new List<byte>();
-                    // Receiving the response bytes in the responseBuffer
-                    while (destServerSocket.Receive(responseBuffer) != 0)
+                    var cachedResponse = "";
+                    // Check if the cachedObjectList is not null
+                    if (CachedObject.cachedObjectsList != null)
                     {
-                        // Copying all bytes to the receivedBytes list
-                        receivedBytes.Add(responseBuffer[0]);
-                        this._clientSocket.Send(responseBuffer);
+                        // Loop though all the cachedObjects
+                        foreach (var cache in CachedObject.cachedObjectsList)
+                        {
+                            // Check if the request has been cached earlier
+                            if (cache.request.Contains(requestPayload))
+                            {
+                                // The value has been cached and the cachedResponse will be equal to what there is in the saved list
+                                cachedResponse = cache.response;
+                            }
+                        }
                     }
 
-                    // Get the response and send it to the log
-                    response = Encoding.UTF8.GetString(receivedBytes.ToArray());
+                    // If there is a cached response we will send this to the client
+                    if (cachedResponse != "")
+                    {
+                        // Get the response and send it to the log
+                        var cachedResponseBytes = Encoding.ASCII.GetBytes(cachedResponse);
+                        // Send the mergeResponse to the client socket
+                        var i = 0;
+                        while (i < cachedResponseBytes.Length)
+                        {
+                            responseBuffer[0] = cachedResponseBytes[i];
+                            this._clientSocket.Send(responseBuffer);
+                            i++;
+                        }
 
-                    // Close all connections
-                    destServerSocket.Disconnect(false);
-                    destServerSocket.Dispose();
+                        response = "CACHED - " + cachedResponse;
+                    }
+                    // There is no cached response
+                    else
+                    {
+                        // Connect to a remoteHost
+                        var destServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                        destServerSocket.Connect(remoteHost, 80);
+
+                        // Sending New Request Information to Destination Server and Relay Response to Client
+                        destServerSocket.Send(Encoding.ASCII.GetBytes(requestPayload));
+
+                        var receivedBytes = new List<byte>();
+                        // Receiving the response bytes in the responseBuffer
+                        while (destServerSocket.Receive(responseBuffer) != 0)
+                        {
+                            // Copying all bytes to the receivedBytes list
+                            receivedBytes.Add(responseBuffer[0]);
+                            this._clientSocket.Send(responseBuffer);
+                        }
+
+                        // Get the response and send it to the log
+                        response = Encoding.UTF8.GetString(receivedBytes.ToArray());
+
+                        // Add request and response to the cachedObjectsList
+                        var cachedObject = new CachedObject(requestPayload, response);
+                        CachedObject.cachedObjectsList.Add(cachedObject);
+
+                        // Close all connections
+                        destServerSocket.Disconnect(false);
+                        destServerSocket.Dispose();
+                    }
                 }
+                // The request is an image request
                 else
                 {
+                    // We will get the correct resource according to what image extension the requested file is.
                     System.Drawing.Bitmap img = null;
                     if (imageExtension != "")
                     {
@@ -172,19 +218,24 @@ namespace Proxy
                     }
 
                     byte[] byteImage;
+                    // Check if the image (resource) is not null. Is the image available in resources?
                     if (img != null)
                     {
+                        // Convert the image to a bytes aray
                         byteImage = ImageToByte(img);
 
+                        // Create a custom response for the image
                         response = "HTTP/1.1 200 OK" + eol + "Server: Joeri Proxy" + eol + "Accept-Ranges: bytes" +
                                    eol + "Content-Length: " + byteImage.Length + eol + "Connection: close" + eol + 
                                    "Content-Type: image/" + imageExtension + eol + "Date: " + DateTime.Now + eol + eol;
 
+                        // Concatenate the headers and the image and convert them to bytes for transport 
                         var responseHeader = Encoding.ASCII.GetBytes(response);
                         var mergedResponse = new byte[responseHeader.Length + byteImage.Length];
                         responseHeader.CopyTo(mergedResponse, 0);
                         byteImage.CopyTo(mergedResponse, responseHeader.Length);
 
+                        // Send the mergeResponse to the client socket
                         var i = 0;
                         while (i < mergedResponse.Length)
                         {
@@ -193,24 +244,33 @@ namespace Proxy
                             i++;
                         }
 
-                        response = Encoding.UTF8.GetString(mergedResponse);
+                        response = "IMAGED REPLACED - " + Encoding.UTF8.GetString(mergedResponse);
                     }
+                    // If we cannot get the resource we will send a 500 internal server error to the client log lstBox
                     else
                     {
                         response = "HTTP/1.1 500 Internal Server Error";
                     }
                 }
+                // Print the response to the log lstBox
                 _printTextDelegate("< " + response);
            
+                // Close the clientSocket
                 this._clientSocket.Disconnect(false);
                 this._clientSocket.Dispose();
             }
+            // If there was an error we will print this error to the log lstBox
             catch (Exception e)
             {
                 _printTextDelegate("Error Occured: " + e.Message);
             }           
         }
 
+        /// <summary>
+        /// Convert an image bitmap to an array of bytes
+        /// </summary>
+        /// <param name="img">the image in resources</param>
+        /// <returns>byte array of the image</returns>
         public byte[] ImageToByte(Image img)
         {
             ImageConverter converter = new ImageConverter();
