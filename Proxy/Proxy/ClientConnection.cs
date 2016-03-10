@@ -108,7 +108,7 @@ namespace Proxy
                     }
                 }
 
-                // Print the request to the log box
+                // Print the request to the log boxd
                 _printTextDelegate("> " + requestPayload);
 
 
