@@ -81,11 +81,13 @@ Rouse, M. (2008, October). What is TCP/IP (Transmission Control Protocol/Interne
 In de request header wordt het type request beschreven (GET, POST, PUT, DELETE). Daarna komt de URL waar de resource te vinden is, en daarna komt het protocol (In dit voorbeeld HTTP/1.1).
 In de request headers worden eigenlijk alle keys ingevuld en meegstuurd. Hierin kan relevante informatie staan zoals de `Accept-Language`. Bij een POST, PUT en DELETE kan er nog een extra HTTP message body worden meegstuurd.
 
-### Uit welke componenten bestaan een HTTP bericht. (Teken een diagram en licht de onderdelen toe)
-
-### Hoe wordt de content in een bericht verpakt? (Teken een diagram en licht de onderdelen toe)
+### Hoe wordt de content in een bericht verpakt?
+De content van een HTTP message wordt getransformeerd naar een bytes array. Dit byte array wordt vervolgens naar de server/proxy verstuurd. De server/proxy kan deze byte array dan uitlezen.
 
 ### Streaming content
+Het is mogelijk om met HTTP content te streamen. In onderstaat citaat wordt duidelijk gemaakt hoe dit in zijn werking gaat.
+
+>HTTP Live Streaming (also known as HLS) is an HTTP-based media streaming communications protocol implemented by Apple Inc. as part of its QuickTime, Safari, OS X, and iOS software. It is similar to MPEG-DASH in that it works by breaking the overall stream into a sequence of small HTTP-based file downloads, each download loading one short chunk of an overall potentially unbounded transport stream. 
 
 ## Kritische reflectie op eigen werk (optioneel,maar wel voor een 10)
 
