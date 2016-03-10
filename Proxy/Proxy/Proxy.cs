@@ -38,14 +38,21 @@ namespace Proxy
         /// <param name="input">The input that will be printed</param>
         private void _addTextToLst(string input)
         {
-            Invoke(new Action(() =>
+            try
             {
-                logTxt.Items.Add(input);
+                Invoke(new Action(() =>
+                {
+                    logTxt.Items.Add(input);
 
-                // Scroll down to the last item
-                var visibleItems = logTxt.ClientSize.Height / logTxt.ItemHeight;
-                logTxt.TopIndex = Math.Max(logTxt.Items.Count - visibleItems + 1, 0);
-            }));
+                    // Scroll down to the last item
+                    var visibleItems = logTxt.ClientSize.Height / logTxt.ItemHeight;
+                    logTxt.TopIndex = Math.Max(logTxt.Items.Count - visibleItems + 1, 0);
+                }));
+            }
+            catch (InvalidOperationException)
+            {
+                Console.Write("Something went wrong with the log");
+            }
         }
 
         /// <summary>
