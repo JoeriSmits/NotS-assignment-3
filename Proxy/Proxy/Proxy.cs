@@ -7,6 +7,7 @@ namespace Proxy
     public partial class Proxy : Form
     {
         public static int Port = 9000;
+        public static int BufferSize = 1;
         public static bool CheckedAuth;
 
         /// <summary>
@@ -75,9 +76,9 @@ namespace Proxy
             }));
         }
 
-        private void textBox1_Blur(object sender, EventArgs e)
+        private void PortText_Blur(object sender, EventArgs e)
         {
-            Port = Convert.ToInt32(textBox1.Text);
+            Port = Convert.ToInt32(portText.Text);
         }
 
         private void authChecked_CheckedChanged(object sender, EventArgs e)
@@ -86,6 +87,11 @@ namespace Proxy
             {
                 CheckedAuth = authChecked.Checked;
             }
+        }
+
+        private void bufferSize_Blur(object sender, EventArgs e)
+        {
+            BufferSize = Convert.ToInt32(bufferSize.Text);
         }
     }
 }

@@ -48,8 +48,8 @@ namespace Proxy
             var requestPayload = "";
             var requestTempLine = "";
             var requestLines = new List<string>();
-            var requestBuffer = new byte[1];
-            var responseBuffer = new byte[1];
+            var requestBuffer = new byte[Proxy.BufferSize];
+            var responseBuffer = new byte[Proxy.BufferSize];
 
             requestLines.Clear();
 
@@ -87,6 +87,7 @@ namespace Proxy
 
                 requestPayload = "";
                 var imageRequest = false;
+                var imageExtension = "";
                 foreach (var line in requestLines)
                 {
                     var addLines = !(Proxy.CheckedAuth && line.Contains("User-Agent"));
@@ -99,6 +100,16 @@ namespace Proxy
                     if (line.Contains("Accept") && line.Contains("image"))
                     {
                         imageRequest = true;
+                        imageExtension = "png";
+
+                        if (line.Contains("jpg"))
+                        {
+                            imageExtension = "jpg";
+                        }
+                        if (line.Contains("gif"))
+                        {
+                            imageExtension = "gif";
+                        }
                     }
 
                     if (addLines)
@@ -140,7 +151,25 @@ namespace Proxy
                 }
                 else
                 {
-                    var img = Properties.Resources.placeholder;
+                    System.Drawing.Bitmap img = null;
+                    if (imageExtension != "")
+                    {
+                        switch (imageExtension)
+                        {
+                            case "png":
+                                img = Properties.Resources.placeholderPNG;
+                                break;
+                            case "jpg":
+                                img = Properties.Resources.placeholderJPG;
+                                break;
+                            case "gif":
+                                img = Properties.Resources.placeholderGIF;
+                                break;
+                            default:
+                                img = Properties.Resources.placeholderPNG;
+                                break;
+                        }
+                    }
 
                     byte[] byteImage;
                     if (img != null)
@@ -149,7 +178,7 @@ namespace Proxy
 
                         response = "HTTP/1.1 200 OK" + eol + "Server: Joeri Proxy" + eol + "Accept-Ranges: bytes" +
                                    eol + "Content-Length: " + byteImage.Length + eol + "Connection: close" + eol + 
-                                   "Content-Type: image/png" + eol;
+                                   "Content-Type: image/" + imageExtension + eol + "Date: " + DateTime.Now + eol + eol;
 
                         var responseHeader = Encoding.ASCII.GetBytes(response);
                         var mergedResponse = new byte[responseHeader.Length + byteImage.Length];
@@ -163,12 +192,13 @@ namespace Proxy
                             this._clientSocket.Send(responseBuffer);
                             i++;
                         }
+
+                        response = Encoding.UTF8.GetString(mergedResponse);
                     }
                     else
                     {
                         response = "HTTP/1.1 500 Internal Server Error";
                     }
-
                 }
                 _printTextDelegate("< " + response);
            

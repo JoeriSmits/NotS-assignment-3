@@ -32,16 +32,14 @@ namespace Proxy
         private void InitializeComponent()
         {
             this.startBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.portText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.clrBtn = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.authChecked = new System.Windows.Forms.CheckBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.bufferSize = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.logTxt = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -56,14 +54,14 @@ namespace Proxy
             this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this._BtnStart_Click);
             // 
-            // textBox1
+            // portText
             // 
-            this.textBox1.Location = new System.Drawing.Point(1113, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 31);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "9000";
-            this.textBox1.LostFocus += new System.EventHandler(this.textBox1_Blur);
+            this.portText.Location = new System.Drawing.Point(1113, 139);
+            this.portText.Name = "portText";
+            this.portText.Size = new System.Drawing.Size(175, 31);
+            this.portText.TabIndex = 2;
+            this.portText.Text = "9000";
+            this.portText.LostFocus += new System.EventHandler(this.PortText_Blur);
             // 
             // label1
             // 
@@ -100,28 +98,10 @@ namespace Proxy
             this.label2.TabIndex = 6;
             this.label2.Text = "P1. a) Cache time out in seconds";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(727, 223);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(276, 25);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "P2. Zet content filter aan/uit";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(1261, 223);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(28, 27);
-            this.checkBox2.TabIndex = 10;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(727, 258);
+            this.label6.Location = new System.Drawing.Point(727, 225);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(449, 25);
             this.label6.TabIndex = 13;
@@ -130,25 +110,26 @@ namespace Proxy
             // authChecked
             // 
             this.authChecked.AutoSize = true;
-            this.authChecked.Location = new System.Drawing.Point(1260, 258);
+            this.authChecked.Location = new System.Drawing.Point(1260, 225);
             this.authChecked.Name = "authChecked";
             this.authChecked.Size = new System.Drawing.Size(28, 27);
             this.authChecked.TabIndex = 14;
             this.authChecked.UseVisualStyleBackColor = true;
             this.authChecked.CheckedChanged += new System.EventHandler(this.authChecked_CheckedChanged);
             // 
-            // textBox3
+            // bufferSize
             // 
-            this.textBox3.Location = new System.Drawing.Point(1113, 291);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(175, 31);
-            this.textBox3.TabIndex = 15;
-            this.textBox3.Text = "1024";
+            this.bufferSize.Location = new System.Drawing.Point(1113, 258);
+            this.bufferSize.Name = "bufferSize";
+            this.bufferSize.Size = new System.Drawing.Size(175, 31);
+            this.bufferSize.TabIndex = 15;
+            this.bufferSize.Text = "1";
+            this.bufferSize.LostFocus += new System.EventHandler(this.bufferSize_Blur);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(727, 294);
+            this.label7.Location = new System.Drawing.Point(727, 261);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(183, 25);
             this.label7.TabIndex = 16;
@@ -171,16 +152,14 @@ namespace Proxy
             this.ClientSize = new System.Drawing.Size(1301, 682);
             this.Controls.Add(this.logTxt);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.bufferSize);
             this.Controls.Add(this.authChecked);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.clrBtn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.portText);
             this.Controls.Add(this.startBtn);
             this.Name = "Proxy";
             this.Text = "Proxy";
@@ -191,16 +170,14 @@ namespace Proxy
 
         #endregion
         private System.Windows.Forms.Button startBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox portText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clrBtn;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox authChecked;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox bufferSize;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox logTxt;
     }
