@@ -78,6 +78,8 @@ Rouse, M. (2008, October). What is TCP/IP (Transmission Control Protocol/Interne
 
 ### Hoe ziet de globale opbouw van een HTTP bericht eruit? (Teken een diagram en licht de onderdelen toe)
 ![alt text](https://github.com/JoeriSmits/NotS-assignment-3/blob/master/proxy_HTTP.png "Proxy HTTP")
+In de request header wordt het type request beschreven (GET, POST, PUT, DELETE). Daarna komt de URL waar de resource te vinden is, en daarna komt het protocol (In dit voorbeeld HTTP/1.1).
+In de request headers worden eigenlijk alle keys ingevuld en meegstuurd. Hierin kan relevante informatie staan zoals de `Accept-Language`. Bij een POST, PUT en DELETE kan er nog een extra HTTP message body worden meegstuurd.
 
 ### Uit welke componenten bestaan een HTTP bericht. (Teken een diagram en licht de onderdelen toe)
 
