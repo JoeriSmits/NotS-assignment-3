@@ -35,7 +35,7 @@ namespace Proxy
             this.portText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.clrBtn = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cacheTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.authChecked = new System.Windows.Forms.CheckBox();
@@ -82,12 +82,14 @@ namespace Proxy
             this.clrBtn.UseVisualStyleBackColor = true;
             this.clrBtn.Click += new System.EventHandler(this.clrBtn_Click);
             // 
-            // textBox2
+            // cacheTime
             // 
-            this.textBox2.Location = new System.Drawing.Point(1113, 181);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(176, 31);
-            this.textBox2.TabIndex = 5;
+            this.cacheTime.Location = new System.Drawing.Point(1113, 181);
+            this.cacheTime.Name = "cacheTime";
+            this.cacheTime.Size = new System.Drawing.Size(176, 31);
+            this.cacheTime.TabIndex = 5;
+            this.cacheTime.Text = "0";
+            this.cacheTime.LostFocus += new System.EventHandler(this.cacheTime_Blur);
             // 
             // label2
             // 
@@ -156,7 +158,7 @@ namespace Proxy
             this.Controls.Add(this.authChecked);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.cacheTime);
             this.Controls.Add(this.clrBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.portText);
@@ -173,7 +175,7 @@ namespace Proxy
         private System.Windows.Forms.TextBox portText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clrBtn;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox cacheTime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox authChecked;

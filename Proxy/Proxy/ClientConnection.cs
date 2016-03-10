@@ -48,8 +48,8 @@ namespace Proxy
             var requestPayload = "";
             var requestTempLine = "";
             var requestLines = new List<string>();
-            var requestBuffer = new byte[Proxy.BufferSize];
-            var responseBuffer = new byte[Proxy.BufferSize];
+            var requestBuffer = new byte[1];
+            var responseBuffer = new byte[1];
 
             requestLines.Clear();
 
@@ -132,16 +132,16 @@ namespace Proxy
                 {
                     var cachedResponse = "";
                     // Check if the cachedObjectList is not null
-                    if (CachedObject.cachedObjectsList != null)
+                    if (CachedObject.CachedObjectsList != null)
                     {
                         // Loop though all the cachedObjects
-                        foreach (var cache in CachedObject.cachedObjectsList)
+                        foreach (var cache in CachedObject.CachedObjectsList)
                         {
                             // Check if the request has been cached earlier
-                            if (cache.request.Contains(requestPayload))
+                            if (cache.Request.Contains(requestPayload))
                             {
                                 // The value has been cached and the cachedResponse will be equal to what there is in the saved list
-                                cachedResponse = cache.response;
+                                cachedResponse = cache.Response;
                             }
                         }
                     }
@@ -152,12 +152,10 @@ namespace Proxy
                         // Get the response and send it to the log
                         var cachedResponseBytes = Encoding.ASCII.GetBytes(cachedResponse);
                         // Send the mergeResponse to the client socket
-                        var i = 0;
-                        while (i < cachedResponseBytes.Length)
+                        for (var i = 0; i < cachedResponseBytes.Length; i++)
                         {
                             responseBuffer[0] = cachedResponseBytes[i];
                             this._clientSocket.Send(responseBuffer);
-                            i++;
                         }
 
                         response = "CACHED - " + cachedResponse;
@@ -186,7 +184,7 @@ namespace Proxy
 
                         // Add request and response to the cachedObjectsList
                         var cachedObject = new CachedObject(requestPayload, response);
-                        CachedObject.cachedObjectsList.Add(cachedObject);
+                        if (CachedObject.CachedObjectsList != null) CachedObject.CachedObjectsList.Add(cachedObject);
 
                         // Close all connections
                         destServerSocket.Disconnect(false);
@@ -224,8 +222,15 @@ namespace Proxy
                         // Convert the image to a bytes aray
                         byteImage = ImageToByte(img);
 
+                        var cacheHeaders = "";
+                        if (Proxy.CacheTimeValue > 0)
+                        {
+                            cacheHeaders = "Cache-Control: no-transform,public,max-age=" + Proxy.CacheTimeValue + eol;
+                        }
+
                         // Create a custom response for the image
-                        response = "HTTP/1.1 200 OK" + eol + "Server: Joeri Proxy" + eol + "Accept-Ranges: bytes" +
+                        response = "HTTP/1.1 200 OK" + eol + cacheHeaders +
+                                    "Server: Joeri Proxy" + eol + "Accept-Ranges: bytes" +
                                    eol + "Content-Length: " + byteImage.Length + eol + "Connection: close" + eol + 
                                    "Content-Type: image/" + imageExtension + eol + "Date: " + DateTime.Now + eol + eol;
 
@@ -236,12 +241,10 @@ namespace Proxy
                         byteImage.CopyTo(mergedResponse, responseHeader.Length);
 
                         // Send the mergeResponse to the client socket
-                        var i = 0;
-                        while (i < mergedResponse.Length)
+                        for (var i = 0; i < mergedResponse.Length; i++)
                         {
                             responseBuffer[0] = mergedResponse[i];
                             this._clientSocket.Send(responseBuffer);
-                            i++;
                         }
 
                         response = "IMAGED REPLACED - " + Encoding.UTF8.GetString(mergedResponse);

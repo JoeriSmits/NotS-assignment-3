@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Proxy
 {
@@ -28,8 +30,25 @@ namespace Proxy
         /// </summary>
         public void StartListener()
         {
-            _printTextDelegate("Proxy started");
-            this.listener.Start();
+            try
+            {
+                this.listener.Start();
+                _printTextDelegate("Proxy started");
+
+                var t = new Thread(delegate ()
+                {
+                    // Infinite loop to accept connections when one connection occures
+                    while (true)
+                    {
+                        this.AcceptConnection();
+                    }
+                });
+                t.Start();
+            }
+            catch (SocketException)
+            {
+                _printTextDelegate("There is already a proxy running on this port.");
+            }
         }
 
         /// <summary>
