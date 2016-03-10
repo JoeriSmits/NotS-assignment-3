@@ -105,15 +105,21 @@ Ik zou graag wat meer kennis willen hebben wat meer specifiek is aan de opdracht
 
 ### Het bezoeken van de website server3.tezzt.nl
 #### Case Handeling
-Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de web browser. Bezoek de website `server3.tezzt.nl` in de webbrowser. 
+Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de webbrowser. Bezoek de website `server3.tezzt.nl` in de webbrowser. 
 ####Case verwacht gedrag
 De proxy zou voor iedere HTTP Request die in de log staat een HTTP response moeten teruggeven.
 
 ### Schakel de User-Agent checkbox aan
 #### Case Handeling
-Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de web browser. Druk op de checkbox knop P4. Zorg dat de checkbox knop P4 aangevinkt staat. Bezoek de website `server3.tezzt.nl`.
+Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de webbrowser. Druk op de checkbox knop P4. Zorg dat de checkbox knop P4 aangevinkt staat. Bezoek de website `server3.tezzt.nl`.
 #### Case verwacht gedrag
 Bevestig dat de `User-Agent` header is verwijderd uit het request door dubbel te klikken op het HTTP Request list item.
+
+### Content filter
+#### Case Handeling
+Start de proxy door op de knop te klikken in de GUI. Stel de proxy in, in de webbrowser. Bezoek de website `server3.tezzt.nl` in de webbrowser.
+#### Case verwacht gedrag
+De afbeeldingen die op de pagina staan moeten zijn vervangen door een placeholder afbeelding die ik resources staat van het project.
 
 #Kritische reflectie op eigen beroepsproduct
 
