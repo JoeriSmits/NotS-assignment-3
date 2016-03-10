@@ -113,7 +113,10 @@ Bevestig dat de `User-Agent` header is verwijderd uit het request door dubbel te
 #Kritische reflectie op eigen beroepsproduct
 
 ###Definieer kwaliteit in je architectuur, design, implementatie.
+Zoals ik al in de bovenstaande reflectie vermeldde ben ik niet tevreden met de code structuur van de applicatie. Om aan een goede code kwaliteit te voldoen vind ik dat je zo gedetailleerd klasses moet aanmaken. Dit betekend dat klasses eigenlijk zo weinig mogelijk moeten doen.
 
 ###Geef voorbeelden.
+Ik heb nu één grote klasse die ClientConnection heet. Deze klasse had beter kunnen worden opgesplitst in een klasse _Request_ en een klasse _Response_. 
 
 ###Wat kan er beter, waarom?
+De structuur van de code gaat er op vooruit als ik het bovenste toe pas. Je krijgt zo vaak ook kleinere methodes in de klassen, omdat je complexe taken verspreid over meerdere klassen en meerdere methoden. Zeker voor als een andere ontwikkelaar in een later scenario met mijn code door moet is dit van belang.
